@@ -1,5 +1,5 @@
 const HttpError = require('http-errors')
-const {createTransport} = require('nodemailer')
+const { createTransport } = require('nodemailer')
 const _ = require('lodash')
 
 const { NODEMAILER_FROM, NODEMAILER_USER, NODEMAILER_HOST, NODEMAILER_PORT, NODEMAILER_PASSWORD } =

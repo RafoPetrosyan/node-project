@@ -1,4 +1,4 @@
-const en =  {
+const en = {
    email: 'Email',
    password: 'Password',
    invalidEmailOrPassword: 'Invalid email or password',
@@ -6,4 +6,4 @@ const en =  {
    wrongCode: 'Wrong code',
 }
 
-module.exports = en;
+module.exports = en

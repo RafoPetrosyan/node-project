@@ -1,6 +1,6 @@
 const path = require('path')
 const ejs = require('ejs')
-const { v4: uniqueId } = require('uuid');
+const { v4: uniqueId } = require('uuid')
 const fs = require('fs')
 const locales = require('../locales/index')
 const { sendMail } = require('../services/nodemailer')
@@ -38,9 +38,7 @@ const deleteImage = async (image) => {
    })
 }
 
-const checkValidTime = (time) =>
-    /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(time)
-
+const checkValidTime = (time) => /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(time)
 
 module.exports = {
    checkValidTime,

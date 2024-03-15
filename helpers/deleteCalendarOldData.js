@@ -20,4 +20,4 @@ const deleteCalendarOldData = async () => {
    }
 }
 
-module.exports = deleteCalendarOldData;
+module.exports = deleteCalendarOldData

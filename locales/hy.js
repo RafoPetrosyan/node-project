@@ -1,4 +1,4 @@
-const hy =  {
+const hy = {
    email: 'El hasce',
    password: 'Gaxtnabar',
    invalidEmailOrPassword: 'Սխալ էլ. հասցե կամ գաղտնաբառ',
@@ -6,4 +6,4 @@ const hy =  {
    wrongCode: 'Wrong code',
 }
 
-module.exports = hy;
+module.exports = hy

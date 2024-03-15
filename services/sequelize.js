@@ -8,4 +8,4 @@ const sequelize = new Sequelize(POSTGRES_DATABASE, POSTGRES_USER, POSTGRES_PASSW
    port: POSTGRES_PORT,
 })
 
-module.exports = sequelize;
+module.exports = sequelize

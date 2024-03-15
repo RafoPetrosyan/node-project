@@ -6,4 +6,4 @@ const locales = {
    hy: hyLocale,
 }
 
-module.exports = locales;
+module.exports = locales
