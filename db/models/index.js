@@ -4,7 +4,7 @@ const fs = require('fs')
 const path = require('path')
 const Sequelize = require('sequelize')
 const basename = path.basename(__filename)
-const sequelize = require('../../services/sequelize')
+const sequelize = require('../sequelize')
 const db = {}
 
 fs.readdirSync(__dirname)

@@ -1,27 +1,24 @@
 const { HttpError } = require('http-errors')
 const express = require('express')
-const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
+const Debug = require('debug')
+const indexRouter = require('./routes/index')
 const cors = require('./middlewares/cors')
 const language = require('./middlewares/language')
 
-const indexRouter = require('./routes/index')
-const usersRouter = require('./routes/users')
-
+const debug = Debug('app:index')
 const app = express()
 
 app.set('trust proxy', 1)
 app.use(cors)
 app.use(language)
 app.use(logger('dev'))
-app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
-app.use(express.static(path.join(__dirname, 'public')))
 
-app.use('/', indexRouter)
-app.use('/users', usersRouter)
+app.use('/api', indexRouter)
 
 app.use((req, res, next) => {
    next(HttpError(404))
@@ -36,5 +33,7 @@ app.use((err, req, res, next) => {
       errors: err.errors,
    })
 })
+
+debug('hello')
 
 module.exports = app
