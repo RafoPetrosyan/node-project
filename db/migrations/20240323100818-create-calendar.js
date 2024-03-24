@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
    async up(queryInterface, Sequelize) {
-      await queryInterface.createTable('UserPreferences', {
+      await queryInterface.createTable('Calendars', {
          id: {
             type: Sequelize.BIGINT,
             autoIncrement: true,
@@ -17,18 +17,18 @@ module.exports = {
                key: 'id',
             },
          },
-         sub_category_id: {
-            type: Sequelize.BIGINT,
-            allowNull: false,
-            references: {
-               model: 'SubCategories',
-               key: 'id',
-            },
-            onDelete: 'CASCADE',
+         day: {
+            type: Sequelize.DATEONLY,
+         },
+         start_time: {
+            type: Sequelize.TIME,
+         },
+         end_time: {
+            type: Sequelize.TIME,
          },
       })
    },
    async down(queryInterface, Sequelize) {
-      await queryInterface.dropTable('UserPreferences')
+      await queryInterface.dropTable('Calendars')
    },
 }

@@ -1,14 +1,14 @@
-import { Sequelize } from 'sequelize'
-import Joi from 'joi'
-import path from 'path'
-import sharp from 'sharp'
-import HttpError from 'http-errors'
-import Categories from '../models/Categories.js'
-import CategoryLanguages from '../models/CategoryLanguages.js'
-import SubCategories from '../models/SubCategories.js'
-import SubCategoryLanguages from '../models/SubCategoryLanguages.js'
-import validate from '../validations/validate.js'
-import { deleteImage } from '../helpers/index.js'
+const { Sequelize } = require('sequelize')
+const Joi = require('joi')
+const path = require('path')
+const sharp = require('sharp')
+const HttpError = require('http-errors')
+const Categories = require('../db/models/categories')
+const CategoryLanguages = require('../db/models/categoryLanguages')
+const SubCategories = require('../db/models/subCategories')
+const SubCategoryLanguages = require('../db/models/subCategoryLanguages')
+const validate = require('../validations/validate')
+const { deleteImage } = require('../helpers/index')
 
 class CategoriesController {
    static getCategory = async (id) => {
@@ -249,7 +249,7 @@ class CategoriesController {
                      quality: 85,
                      mozjpeg: true,
                   })
-                  .toFile(path.resolve(path.join('./public', categoryImage))),
+                  .toFile(path.resolve(__dirname, 'public', categoryImage)),
             ])
          }
          const category = await Categories.create({ image: categoryImage })
@@ -321,7 +321,7 @@ class CategoriesController {
                      quality: 85,
                      mozjpeg: true,
                   })
-                  .toFile(path.resolve(path.join('./public', categoryImage))),
+                  .toFile(path.resolve(__dirname, 'public', categoryImage)),
             ])
             await deleteImage(category.image)
          }
@@ -396,7 +396,7 @@ class CategoriesController {
                      quality: 85,
                      mozjpeg: true,
                   })
-                  .toFile(path.resolve(path.join('./public', categoryImage))),
+                  .toFile(path.resolve(__dirname, 'public', categoryImage)),
             ])
          }
          const subCategory = await Categories.create({ image: categoryImage, category_id })
@@ -478,7 +478,7 @@ class CategoriesController {
                      quality: 85,
                      mozjpeg: true,
                   })
-                  .toFile(path.resolve(path.join('./public', categoryImage))),
+                  .toFile(path.resolve(__dirname, 'public', categoryImage)),
             ])
             await deleteImage(subCategory.image)
          }
@@ -520,4 +520,4 @@ class CategoriesController {
    }
 }
 
-export default CategoriesController
+module.exports = CategoriesController

@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 const HttpError = require('http-errors')
-const Users = require('../models/Users.js')
+const Users = require('../db/models/user')
 
 const { JWT_SECRET } = process.env
 

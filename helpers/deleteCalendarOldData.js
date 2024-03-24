@@ -1,6 +1,6 @@
 const { Op } = require('sequelize')
 const moment = require('moment')
-const Calendar = require('../models/Calendar.js')
+const Calendar = require('../db/models/calendar')
 
 const deleteCalendarOldData = async () => {
    try {

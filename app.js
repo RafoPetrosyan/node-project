@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const { HttpError } = require('http-errors')
 const express = require('express')
 const cookieParser = require('cookie-parser')

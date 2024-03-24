@@ -2,33 +2,36 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
    async up(queryInterface, Sequelize) {
-      await queryInterface.createTable('UserPreferences', {
+      await queryInterface.createTable('EventImages', {
          id: {
             type: Sequelize.BIGINT,
             autoIncrement: true,
             allowNull: false,
             primaryKey: true,
          },
-         user_id: {
+         event_id: {
             type: Sequelize.BIGINT,
             allowNull: false,
             references: {
-               model: 'Users',
+               model: 'Events',
                key: 'id',
             },
          },
-         sub_category_id: {
-            type: Sequelize.BIGINT,
+         original: {
+            type: Sequelize.STRING,
             allowNull: false,
-            references: {
-               model: 'SubCategories',
-               key: 'id',
-            },
-            onDelete: 'CASCADE',
+         },
+         thumb: {
+            type: Sequelize.STRING,
+            allowNull: false,
+         },
+         is_cover: {
+            type: Sequelize.BOOLEAN,
+            defaultValue: false,
          },
       })
    },
    async down(queryInterface, Sequelize) {
-      await queryInterface.dropTable('UserPreferences')
+      await queryInterface.dropTable('EventImages')
    },
 }

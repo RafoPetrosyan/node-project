@@ -42,6 +42,7 @@ SubCategories.hasMany(UserPreferences, {
 UserPreferences.belongsTo(SubCategories, {
    foreignKey: 'sub_category_id',
    as: 'sub_category',
+   onDelete: 'CASCADE',
 })
 
 module.exports = UserPreferences

@@ -1,11 +1,11 @@
-import Joi from 'joi'
-import moment from 'moment'
-import HttpError from 'http-errors'
-import { Sequelize } from 'sequelize'
-import validate from '../validations/validate.js'
-import { checkValidTime } from '../helpers/index.js'
-import Calendar from '../models/Calendar.js'
-import Users from '../models/Users.js'
+const Joi = require('joi')
+const moment = require('moment')
+const HttpError = require('http-errors')
+const { Sequelize } = require('sequelize')
+const validate = require('../validations/validate')
+const { checkValidTime } = require('../helpers/index')
+const Calendar = require('../db/models/calendar')
+const Users = require('../db/models/user')
 
 class CategoriesController {
    static getMyCalendarList = async (req, res, next) => {
@@ -138,4 +138,4 @@ class CategoriesController {
    }
 }
 
-export default CategoriesController
+module.exports = CategoriesController

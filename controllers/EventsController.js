@@ -1,19 +1,18 @@
-import Joi from 'joi'
-import { Op, Sequelize } from 'sequelize'
-import moment from 'moment'
-import HttpError from 'http-errors'
-import path from 'path'
-import sharp from 'sharp'
-import _ from 'lodash'
-import validate from '../validations/validate.js'
-import Calendar from '../models/Calendar.js'
-import Categories from '../models/Categories.js'
-import Users from '../models/Users.js'
-import Events from '../models/Events.js'
-import EventImages from '../models/EventImages.js'
-import UserPreferences from '../models/UserPreferences.js'
-import SubCategories from '../models/SubCategories.js'
-import { deleteImage } from '../helpers/index.js'
+const Joi = require('joi')
+const { Op, Sequelize } = require('sequelize')
+const moment = require('moment')
+const HttpError = require('http-errors')
+const path = require('path')
+const sharp = require('sharp')
+const _ = require('lodash')
+const validate = require('../validations/validate')
+const Calendar = require('../db/models/calendar')
+const Users = require('../db/models/user')
+const Events = require('../db/models/events')
+const EventImages = require('../db/models/eventImages')
+const UserPreferences = require('../db/models/userPreferences')
+const SubCategories = require('../db/models/subCategories')
+const { deleteImage } = require('../helpers/index')
 
 const { BASE_URL } = process.env
 
@@ -125,14 +124,14 @@ class EventsController {
                      quality: 95,
                      mozjpeg: true,
                   })
-                  .toFile(path.resolve(path.join('./public', original))),
+                  .toFile(path.resolve(__dirname, 'public', original)),
                sharp(files.cover_image[0].path)
                   .resize(180)
                   .jpeg({
                      quality: 70,
                      mozjpeg: true,
                   })
-                  .toFile(path.resolve(path.join('./public', thumb))),
+                  .toFile(path.resolve(__dirname, 'public', thumb)),
             ])
             imagesData.push({
                event_id: creationEvent.id,
@@ -156,14 +155,14 @@ class EventsController {
                         quality: 95,
                         mozjpeg: true,
                      })
-                     .toFile(path.resolve(path.join('./public', original))),
+                     .toFile(path.resolve(__dirname, 'public', original)),
                   sharp(images[i].path)
                      .resize(180)
                      .jpeg({
                         quality: 70,
                         mozjpeg: true,
                      })
-                     .toFile(path.resolve(path.join('./public', thumb))),
+                     .toFile(path.resolve(__dirname, 'public', thumb)),
                ])
                imagesData.push({
                   event_id: creationEvent.id,
@@ -316,14 +315,14 @@ class EventsController {
                      quality: 95,
                      mozjpeg: true,
                   })
-                  .toFile(path.resolve(path.join('./public', original))),
+                  .toFile(path.resolve(__dirname, 'public', original)),
                sharp(files.cover_image[0].path)
                   .resize(180)
                   .jpeg({
                      quality: 70,
                      mozjpeg: true,
                   })
-                  .toFile(path.resolve(path.join('./public', thumb))),
+                  .toFile(path.resolve(__dirname, 'public', thumb)),
             ])
             await EventImages.update(
                {
@@ -348,14 +347,14 @@ class EventsController {
                         quality: 95,
                         mozjpeg: true,
                      })
-                     .toFile(path.resolve(path.join('./public', original))),
+                     .toFile(path.resolve(__dirname, 'public', original)),
                   sharp(images[i].path)
                      .resize(180)
                      .jpeg({
                         quality: 70,
                         mozjpeg: true,
                      })
-                     .toFile(path.resolve(path.join('./public', thumb))),
+                     .toFile(path.resolve(__dirname, 'public', thumb)),
                ])
                imagesData.push({
                   event_id: params.id,
@@ -522,4 +521,4 @@ class EventsController {
    }
 }
 
-export default EventsController
+module.exports = EventsController

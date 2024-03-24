@@ -9,11 +9,10 @@ const sharp = require('sharp')
 const validate = require('../validations/validate')
 const { emailVerification, generateRandomCode, translate } = require('../helpers/index')
 const Users = require('../db/models/user')
-const SubCategories = require('../db/models/user')
-import SubCategories from '../models/SubCategories.js'
-import UserPreferences from '../models/UserPreferences.js'
-import { signInProviders } from '../constants/index.js'
-import { sendMail } from '../services/nodemailer.js'
+const SubCategories = require('../db/models/subCategories')
+const UserPreferences = require('../db/models/userPreferences')
+const { signInProviders } = require('../constants/index')
+const { sendMail } = require('../services/nodemailer')
 
 const { JWT_SECRET, BASE_URL } = process.env
 
@@ -495,7 +494,7 @@ class UsersController {
                      quality: 85,
                      mozjpeg: true,
                   })
-                  .toFile(path.resolve(path.join('./public', avatar))),
+                  .toFile(path.resolve(__dirname, 'public', avatar)),
             ])
             if (user.avatar) {
                const oldImage = path.resolve(
@@ -595,4 +594,4 @@ class UsersController {
    }
 }
 
-export default UsersController
+module.exports = UsersController

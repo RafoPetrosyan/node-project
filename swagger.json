@@ -1,0 +1,1481 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "API Documentation"
+  },
+  "paths": {
+    "/api/users/sign-in": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Sign in",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "data",
+            "in": "body",
+            "schema": {
+              "required": [
+                "password",
+                "email"
+              ],
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+    "/api/users/sign-up": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Sign up",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "schema": {
+              "required": [
+                "password",
+                "email"
+              ],
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+    "/api/users/confirm-verification": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Confirm verification",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          },
+          {
+            "name": "data",
+            "in": "body",
+            "schema": {
+              "required": [
+                "code",
+                "verify_token"
+              ],
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "verify_token": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "403": {
+            "description": "Verify token expire"
+          },
+          "422": {
+            "description": "Invalid code"
+          }
+        }
+      }
+    },
+    "/api/users/resend-verification": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Resend verification",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+    "/api/users/sign-up/user-info": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Sign up user info",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          },
+          {
+            "name": "data",
+            "in": "body",
+            "schema": {
+              "required": [
+                "first_name",
+                "last_name",
+                "phone_number"
+              ],
+              "properties": {
+                "first_name": {
+                  "type": "string"
+                },
+                "last_name": {
+                  "type": "string"
+                },
+                "phone_number": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+    "/api/users/sign-up/preferneces": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Add user preferences",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          },
+          {
+            "name": "data",
+            "in": "body",
+            "schema": {
+              "required": [
+                "preferences"
+              ],
+              "properties": {
+                "preferences": {
+                  "type": "string",
+                  "example": "1,2",
+                  "description": "Sub category ids"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+    "/api/users/forgot-password": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Forgot password",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "data",
+            "in": "body",
+            "schema": {
+              "required": [
+                "email"
+              ],
+              "properties": {
+                "email": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+    "/api/users/forgot-password/code": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Send forgot password verification code",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "data",
+            "in": "body",
+            "schema": {
+              "required": [
+                "reset_token",
+                "code"
+              ],
+              "properties": {
+                "reset_token": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "403": {
+            "description": "Token expired"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+    "/api/users/reset-password": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Reset password",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          },
+          {
+            "name": "data",
+            "in": "body",
+            "schema": {
+              "required": [
+                "password"
+              ],
+              "properties": {
+                "password": {
+                  "type": "string",
+                  "minLength": 6
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+    "/api/users/update-profile": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update profile",
+        "consumes": ["multipart/form-data"],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          },
+          {
+            "name": "first_name",
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "last_name",
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "phone_number",
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "avatar",
+            "in": "formData",
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+
+
+    "/api/categories": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "List of categories",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "number"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+    "/api/categories/sub": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "List of sub categories",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "number"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+
+
+    "/api/calendar/my-list": {
+      "get": {
+        "tags": [
+          "Calendar"
+        ],
+        "summary": "My calendar list",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+    "/api/calendar": {
+      "post": {
+        "tags": [
+          "Calendar"
+        ],
+        "summary": "Add free time",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          },
+          {
+            "name": "data",
+            "in": "body",
+            "schema": {
+              "required": [
+                "day",
+                "times"
+              ],
+              "properties": {
+                "day": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "times": {
+                  "type": "string",
+                  "example": "12:19, 20:50",
+                  "format": "time"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Calendar"
+        ],
+        "summary": "Get all calendar list",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "number"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+    "/api/calendar/{id}": {
+      "delete": {
+        "tags": [
+          "Calendar"
+        ],
+        "summary": "Delete day",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+
+
+    "/api/events": {
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Get Events list",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "number",
+            "default": 1
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "number",
+            "default": 10
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "type": "string",
+            "description": "Search by event name and details info"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Create event",
+        "consumes": ["multipart/form-data"],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          },
+          {
+            "name": "start_date",
+            "in": "formData",
+            "type": "string",
+            "format": "date",
+            "required": true
+          },
+          {
+            "name": "end_date",
+            "in": "formData",
+            "type": "string",
+            "format": "date",
+            "required": true
+          },
+          {
+            "name": "longitude",
+            "in": "formData",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "latitude",
+            "in": "formData",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "details",
+            "in": "formData",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "category_id",
+            "in": "formData",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "speaker_id",
+            "in": "formData",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "cover_image",
+            "in": "formData",
+            "type": "file",
+            "required": true
+          },
+          {
+            "name": "images[]",
+            "in": "formData",
+            "type": "file",
+            "multipleOf": 10,
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+    "/api/events/{id}": {
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Get event by id",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Update event",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "start_date",
+            "in": "formData",
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "end_date",
+            "in": "formData",
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "name": "longitude",
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "latitude",
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "details",
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "category_id",
+            "in": "formData",
+            "type": "number"
+          },
+          {
+            "name": "speaker_id",
+            "in": "formData",
+            "type": "number"
+          },
+          {
+            "name": "cover_image",
+            "in": "formData",
+            "type": "file"
+          },
+          {
+            "name": "images[]",
+            "in": "formData",
+            "type": "file",
+            "multipleOf": 10
+          },
+          {
+            "name": "delete_image_ids",
+            "in": "formData",
+            "type": "string",
+            "description": "Example` 1,2,3,18"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Delete event",
+        "parameters": [
+          {
+            "name": "language",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+
+    "/api/admin/sign-in": {
+      "post": {
+        "tags": [
+          "Admin - Users"
+        ],
+        "summary": "Sign in",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "schema": {
+              "required": [
+                "password",
+                "email"
+              ],
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+    "/api/admin/users": {
+      "get": {
+        "tags": [
+          "Admin - Users"
+        ],
+        "summary": "Users list",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "number"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "number"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+    "/api/admin/categories": {
+      "get": {
+        "tags": [
+          "Admin - Categories"
+        ],
+        "summary": "Categories list",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "number"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+    "/api/admin/category/{id}": {
+      "get": {
+        "tags": [
+          "Admin - Categories"
+        ],
+        "summary": "Get category by id",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+    "/api/admin/category": {
+      "post": {
+        "tags": [
+          "Admin - Categories"
+        ],
+        "summary": "Create category",
+        "consumes": ["multipart/form-data"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          },
+          {
+            "name": "en_lang",
+            "in": "formData",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "hy_lang",
+            "in": "formData",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "ru_lang",
+            "in": "formData",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "type": "file",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+    "/api/admin/category/update/{id}": {
+      "put": {
+        "tags": [
+          "Admin - Categories"
+        ],
+        "summary": "Update category",
+        "consumes": ["multipart/form-data"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "en_lang",
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "hy_lang",
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "ru_lang",
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+    "/api/admin/category/delete/{id}": {
+      "delete": {
+        "tags": [
+          "Admin - Categories"
+        ],
+        "summary": "Delete category",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+    "/api/admin/sub-categories": {
+      "get": {
+        "tags": [
+          "Admin - Categories"
+        ],
+        "summary": "Sub categories list",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "number"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+    "/api/admin/sub-category/{id}": {
+      "get": {
+        "tags": [
+          "Admin - Categories"
+        ],
+        "summary": "Get sub category by id",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+    "/api/admin/sub-category": {
+      "post": {
+        "tags": [
+          "Admin - Categories"
+        ],
+        "summary": "Create sub category",
+        "consumes": ["multipart/form-data"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          },
+          {
+            "name": "en_lang",
+            "in": "formData",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "hy_lang",
+            "in": "formData",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "ru_lang",
+            "in": "formData",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "type": "file",
+            "required": true
+          },
+          {
+            "name": "category_id",
+            "in": "formData",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+    "/api/admin/sub-category/update/{id}": {
+      "put": {
+        "tags": [
+          "Admin - Categories"
+        ],
+        "summary": "Update sub category",
+        "consumes": ["multipart/form-data"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "en_lang",
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "hy_lang",
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "ru_lang",
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    },
+    "/api/admin/sub-category/delete/{id}": {
+      "delete": {
+        "tags": [
+          "Admin - Categories"
+        ],
+        "summary": "Delete sub category",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer Token"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "422": {
+            "description": "Fail"
+          }
+        }
+      }
+    }
+  }
+}
